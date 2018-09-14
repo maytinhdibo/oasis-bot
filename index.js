@@ -73,10 +73,15 @@ app.get('/webhook', (req, res) => {
     }
 });
 
-// Handles messages events
-function handleMessage(sender_psid, received_message) {
-
-}
+function callSendAPI(sender_psid, response) {
+    // Construct the message body
+    let request_body = {
+      "recipient": {
+        "id": sender_psid
+      },
+      "message": response
+    }
+  }
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
