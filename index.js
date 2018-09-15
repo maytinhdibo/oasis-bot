@@ -75,7 +75,7 @@ function sendQuestion(sender_psid, received_message) {
     let response;
     if (received_message.text) {
         response = {
-            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới.`,
+            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới. \n hia`,
             "quick_replies": [
                 {
                     "content_type": "text",
