@@ -118,7 +118,6 @@ function sendType(sender_psid, received_message) {
 
 function sendBook(sender_psid) {
     let response;
-    if (received_message.text) {
         response = {
             "attachment":{
               "type":"template",
@@ -132,7 +131,6 @@ function sendBook(sender_psid) {
                     "title":"Visit Messenger"
                   }
                 ]
-        }
     }
     } 
 }
