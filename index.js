@@ -75,11 +75,16 @@ function sendQuestion(sender_psid, received_message) {
     let response;
     if (received_message.text) {
         response = {
-            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới. https://www.google.com.vn/`,
+            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới.`,
             "quick_replies": [
                 {
                     "content_type": "text",
                     "title": "Đặt câu hỏi",
+                    "payload": "<POSTBACK_PAYLOAD>",
+                },
+                {
+                    "content_type": "text",
+                    "title": "Tài liệu tham khảo",
                     "payload": "<POSTBACK_PAYLOAD>",
                 }
             ]
