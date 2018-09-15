@@ -117,15 +117,15 @@ function sendType(sender_psid, received_message) {
 }
 
 function sendBook(sender_psid) {
-     let response = {
-            "text": `Bạn có thể tham khảo qua các tài liệu về OPP dưới đây.\n
-            Sách Intro Java:\n
-            Luyện bài tập:\n
-            Đề thực hành:\n
-            Nội dung bài tập lớn:\n
+    let response = {
+        "text": `Bạn có thể tham khảo qua các tài liệu về OPP dưới đây.\n
+Sách Intro Java:\n
+Luyện bài tập:\n
+Đề thực hành:\n
+Nội dung bài tập lớn:\n
             `
 
-        }
+    }
 
     callSendAPI(sender_psid, response);
 }
