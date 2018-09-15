@@ -100,7 +100,29 @@ function sendQuestion(sender_psid, received_message) {
 }
 
 function handleMessage(sender_psid, received_message) {
-    sendQuestion(sender_psid, received_message);
+    // sendQuestion(sender_psid, received_message);
+    let response;
+
+    if (received_message.text) {
+        response = {
+            "text": `Để bật câu hỏi vui lòng chọn nút bên dưới.`,
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "Gửi nội dung",
+                },
+                {
+                    "content_type": "text",
+                    "title": "Search",
+                }
+            ]
+        }
+
+    } else if (received_message.attachments) {
+        let attachment_url = received_message.attachments[0].payload.url;
+    }
+
+    callSendAPI(sender_psid, response);
 }
 
 function callSendAPI(sender_psid, response) {
