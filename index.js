@@ -6,7 +6,7 @@ const
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()); // creates express http server
 const request = require('request');
-
+var mapMess={"id":"text"}
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -73,11 +73,13 @@ app.get('/webhook', (req, res) => {
 
 function sendQuestion(sender_psid, received_message) {
     let response;
-
-    // Checks if the message contains text
+    let last="";
+    if(mapMess[sender_psid]){
+        last=mapMess[sender_psid];
+    }
     if (received_message.text) {
         response = {
-            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới.`,
+            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới. ${last}`,
             "quick_replies": [
                 {
                     "content_type": "text",
@@ -93,13 +95,8 @@ function sendQuestion(sender_psid, received_message) {
         }
 
     } else if (received_message.attachments) {
-
-        // Gets the URL of the message attachment
         let attachment_url = received_message.attachments[0].payload.url;
-
     }
-
-    // Sends the response message
     callSendAPI(sender_psid, response);
 }
 
@@ -108,7 +105,9 @@ function handleMessage(sender_psid, received_message) {
 }
 
 function callSendAPI(sender_psid, response) {
-    // Construct the message body
+
+    mapMess[sender_psid]=response.text;
+
     let request_body = {
         "recipient": {
             "id": sender_psid
