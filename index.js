@@ -118,37 +118,27 @@ function sendType(sender_psid, received_message) {
 
 function sendBook(sender_psid) {
     let response = {
-        "text": `Bạn có thể tham khảo qua các tài liệu về OPP dưới đây.`,
-        "buttons":[{
-            "type": "web_url",
-            "url": "http://google.com",
-            "title": "Sách Intro Java",
-          },
-          {
-            "type": "web_url",
-            "url": "http://google.com",
-            "title": "Hacker Rank",
-          },
-          {
-            "type": "web_url",
-            "url": "http://google.com",
-            "title": "Đề thực hành",
-          },
-          {
-            "type": "web_url",
-            "url": "http://google.com",
-            "title": "Nội dung bài tập lớn",
-          }
-        ]
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": "Bạn có thể tham khảo qua các tài liệu về OPP dưới đây.",
+                "buttons": [
+                    {
+                        "type": "web_url",
+                        "url": "https://www.messenger.com",
+                        "title": "Visit Messenger"
+                    }
+                ]
 
-    }
+            }
 
     callSendAPI(sender_psid, response);
-}
+        }
 
 function handleMessage(sender_psid, received_message) {
 
-    let text = "";
+            let text = "";
     if (received_message.text) {
         text = received_message.text;
     }
