@@ -13,10 +13,8 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {
 
-    // Parse the request body from the POST
     let body = req.body;
 
-    // Check the webhook event is from a Page subscription
     if (body.object === 'page') {
 
         body.entry.forEach(function (entry) {
@@ -36,7 +34,6 @@ app.post('/webhook', (req, res) => {
 
         });
 
-        // Return a '200 OK' response to all events
         res.status(200).send('EVENT_RECEIVED');
 
     } else {
@@ -80,11 +77,19 @@ function handleMessage(sender_psid, received_message) {
   
     // Checks if the message contains text
     if (received_message.text) {
-      
-      // Creates the payload for a basic text message, which
-      // will be added to the body of our request to the Send API
       response = {
-        "text": `Bạn vừa nhắn: "${received_message.text}". Vì một thế giới tôn vinh Cường đẹp trai!`
+        "text": `Bạn vừa nhắn: "${received_message.text}". Vì một thế giới tôn vinh Cường đẹp trai!`,
+        "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Search",
+              "payload":"<POSTBACK_PAYLOAD>",
+              "image_url":"http://example.com/img/red.png"
+            },
+            {
+              "content_type":"location"
+            }
+          ]
       }
   
     } else if (received_message.attachments) {
