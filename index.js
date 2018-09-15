@@ -99,7 +99,6 @@ function sendQuestion(sender_psid, received_message) {
 function sendType(sender_psid, received_message) {
     let response;
     if (received_message.text) {
-        text = received_message.text;
         response = {
             "text": `Vui lòng nhập câu hỏi.`,
         }
