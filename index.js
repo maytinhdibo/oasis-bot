@@ -100,19 +100,21 @@ function sendType(sender_psid, received_message) {
     let response;
     if (received_message.text) {
         response = {
-            "text": `Vui lòng nhập câu hỏi. Hoặc chọn hủy bỏ phía dưới.`,
-            "quick_replies": [
-                {
-                    "content_type": "text",
-                    "title": "Hủy",
-                    "payload": "<POSTBACK_PAYLOAD>",
-                }
-            ]
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"button",
+                "text":"What do you want to do next?",
+                "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://www.messenger.com",
+                    "title":"Visit Messenger"
+                  }
+                ]
         }
-
-    } else if (received_message.attachments) {
-        let attachment_url = received_message.attachments[0].payload.url;
     }
+    } 
     callSendAPI(sender_psid, response);
 }
 
@@ -130,7 +132,7 @@ function sendBook(sender_psid) {
                         "title": "Visit Messenger"
                     }
                 ]
-
+            }
             }
 
     callSendAPI(sender_psid, response);
