@@ -83,7 +83,7 @@ function handleMessage(sender_psid, received_message) {
             {
               "content_type":"text",
               "title":"Gửi nội dung câu hỏi",
-              "payload":"<POSTBACK_PAYLOAD>",
+              "payload":function(e){console.log("hehee")},
             },
             {
                 "content_type":"text",
