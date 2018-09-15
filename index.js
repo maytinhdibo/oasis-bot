@@ -100,6 +100,26 @@ function sendType(sender_psid, received_message) {
     let response;
     if (received_message.text) {
         response = {
+            "text": `Vui lòng nhập câu hỏi. Hoặc chọn hủy bỏ phía dưới.`,
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "Hủy",
+                    "payload": "<POSTBACK_PAYLOAD>",
+                }
+            ]
+        }
+
+    } else if (received_message.attachments) {
+        let attachment_url = received_message.attachments[0].payload.url;
+    }
+    callSendAPI(sender_psid, response);
+}
+
+function sendBook(sender_psid) {
+    let response;
+    if (received_message.text) {
+        response = {
             "attachment":{
               "type":"template",
               "payload":{
@@ -116,26 +136,6 @@ function sendType(sender_psid, received_message) {
     }
     } 
 }
-    callSendAPI(sender_psid, response);
-}
-
-function sendBook(sender_psid) {
-    let response = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "button",
-                "text": "Bạn có thể tham khảo qua các tài liệu về OPP dưới đây.",
-                "buttons": [
-                    {
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "Visit Messenger"
-                    }
-                ]
-            }
-            }
-
     callSendAPI(sender_psid, response);
         }
 
