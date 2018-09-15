@@ -5,7 +5,7 @@ const
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()); // creates express http server
-    const request = require('request');
+const request = require('request');
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -71,63 +71,66 @@ app.get('/webhook', (req, res) => {
     }
 });
 
-function handleMessage(sender_psid, received_message) {
-
+function sendQuestion(sender_psid, received_message) {
     let response;
-  
+
     // Checks if the message contains text
     if (received_message.text) {
-      response = {
-        "text": `Bạn vừa nhắn: "${received_message.text}". Vì một thế giới tôn vinh Cường đẹp trai!`,
-        "quick_replies":[
-            {
-              "content_type":"text",
-              "title":"Gửi n",
-              "payload":"<POSTBACK_PAYLOAD>",
-            },
-            {
-                "content_type":"text",
-                "title":"Search",
-                "payload":"<POSTBACK_PAYLOAD>"
-            }
-          ]
-      }
-  
+        response = {
+            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới.`,
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "Gửi câu hỏi",
+                    "payload": "<POSTBACK_PAYLOAD>",
+                },
+                {
+                    "content_type": "text",
+                    "title": "Hủy",
+                    "payload": "<POSTBACK_PAYLOAD>"
+                }
+            ]
+        }
+
     } else if (received_message.attachments) {
-    
-      // Gets the URL of the message attachment
-      let attachment_url = received_message.attachments[0].payload.url;
-    
-    } 
-    
+
+        // Gets the URL of the message attachment
+        let attachment_url = received_message.attachments[0].payload.url;
+
+    }
+
     // Sends the response message
-    callSendAPI(sender_psid, response);    
-  }
+    callSendAPI(sender_psid, response);
+}
+
+function handleMessage(sender_psid, received_message) {
+    sendQuestion(sender_psid, received_message)
+}
 
 function callSendAPI(sender_psid, response) {
     // Construct the message body
     let request_body = {
-      "recipient": {
-        "id": sender_psid
-      },
-      "message": response
+        "recipient": {
+            "id": sender_psid
+        },
+        "message": response
     }
-  
+
     // Send the HTTP request to the Messenger Platform
     request({
-      "uri": "https://graph.facebook.com/v2.6/me/messages",
-      "qs": { "access_token": "EAAYZCvsD6N7ABAIbVR6ZAmrZArAFhAEyRPWYYId9UA2lpUoZBCXkOOrS18biR20c7yoWhWeBZBsL58ZCPm87WfULaLGtnrqPsT2ur8NLEjWZB4MO6QJZAn0wNwG8LZA0hlUGM6AsMgEuiZAeGMZC9YjMpvtxi4d5nBnd1W5J3kZBlxw5yfYWdOWMe5Ko" },
-      "method": "POST",
-      "json": request_body
+        "uri": "https://graph.facebook.com/v2.6/me/messages",
+        "qs": { "access_token": "EAAYZCvsD6N7ABAIbVR6ZAmrZArAFhAEyRPWYYId9UA2lpUoZBCXkOOrS18biR20c7yoWhWeBZBsL58ZCPm87WfULaLGtnrqPsT2ur8NLEjWZB4MO6QJZAn0wNwG8LZA0hlUGM6AsMgEuiZAeGMZC9YjMpvtxi4d5nBnd1W5J3kZBlxw5yfYWdOWMe5Ko" },
+        "method": "POST",
+        "json": request_body
     }, (err, res, body) => {
-      if (!err) {
-        console.log('message sent!')
-      } else {
-        console.error("Unable to send message:" + err);
-      }
-    }); 
-  }
-  
+        if (!err) {
+            console.log('message sent!')
+        } else {
+            console.error("Unable to send message:" + err);
+        }
+    });
+}
+
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
