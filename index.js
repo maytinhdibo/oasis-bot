@@ -71,6 +71,8 @@ app.get('/webhook', (req, res) => {
     }
 });
 
+function hihu(){console.log("hehee")}
+
 function handleMessage(sender_psid, received_message) {
 
     let response;
@@ -83,7 +85,7 @@ function handleMessage(sender_psid, received_message) {
             {
               "content_type":"text",
               "title":"Gửi nội dung câu hỏi",
-              "payload":function(e){console.log("hehee")},
+              "payload": "hihi",
             },
             {
                 "content_type":"text",
