@@ -74,13 +74,12 @@ app.get('/webhook', (req, res) => {
 function sendQuestion(sender_psid, received_message) {
     let response;
     if (received_message.text) {
-        text = received_message.text;
         response = {
             "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới. ${last}`,
             "quick_replies": [
                 {
                     "content_type": "text",
-                    "title": "Gửi câu hỏi",
+                    "title": "Đặt câu hỏi",
                     "payload": "<POSTBACK_PAYLOAD>",
                 },
                 {
