@@ -81,11 +81,6 @@ function sendQuestion(sender_psid, received_message) {
                     "content_type": "text",
                     "title": "Đặt câu hỏi",
                     "payload": "<POSTBACK_PAYLOAD>",
-                },
-                {
-                    "content_type": "text",
-                    "title": "Hủy",
-                    "payload": "<POSTBACK_PAYLOAD>"
                 }
             ]
         }
@@ -122,7 +117,7 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {
         text = received_message.text;
     }
-console.log("hihi là: "+text);
+
     if (mapMess[sender_psid]) {
         switch (text) {
             case "Đặt câu hỏi":
@@ -130,7 +125,10 @@ console.log("hihi là: "+text);
                 break;
 
             default:
-            sendQuestion(sender_psid, received_message);
+            if(text=="Hủy"){
+                sendQuestion(sender_psid, received_message);
+            }
+            
                 break;
         }
     } else {
