@@ -100,7 +100,14 @@ function sendType(sender_psid, received_message) {
     let response;
     if (received_message.text) {
         response = {
-            "text": `Vui lòng nhập câu hỏi.`,
+            "text": `Vui lòng nhập câu hỏi. Hoặc chọn hủy bỏ phía dưới.`,
+            "quick_replies": [
+                {
+                    "content_type": "text",
+                    "title": "Hủy",
+                    "payload": "<POSTBACK_PAYLOAD>",
+                }
+            ]
         }
 
     } else if (received_message.attachments) {
