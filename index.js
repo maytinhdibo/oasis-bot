@@ -119,7 +119,7 @@ function sendType(sender_psid, received_message) {
 function sendBook(sender_psid) {
     let response = {
         "text": `Bạn có thể tham khảo qua các tài liệu về OPP dưới đây.`,
-        buttons:[{
+        "buttons":[{
             "type": "web_url",
             "url": "http://google.com",
             "title": "Sách Intro Java",
