@@ -116,8 +116,7 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {
         text = received_message.text;
     }
-
-    sendQuestion(sender_psid, received_message);
+console.log("hihi là: "+text);
     if (mapMess[sender_psid]) {
         switch (text) {
             case "Đặt câu hỏi":
@@ -125,6 +124,7 @@ function handleMessage(sender_psid, received_message) {
                 break;
 
             default:
+            sendQuestion(sender_psid, received_message);
                 break;
         }
     } else {
