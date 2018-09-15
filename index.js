@@ -75,7 +75,7 @@ function sendQuestion(sender_psid, received_message) {
     let response;
     if (received_message.text) {
         response = {
-            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới. ${last}`,
+            "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới.`,
             "quick_replies": [
                 {
                     "content_type": "text",
@@ -93,7 +93,7 @@ function sendQuestion(sender_psid, received_message) {
     } else if (received_message.attachments) {
         let attachment_url = received_message.attachments[0].payload.url;
     }
-    callSendAPI(sender_psid, response, text);
+    callSendAPI(sender_psid, response);
 }
 
 function sendType(sender_psid, received_message) {
@@ -137,8 +137,6 @@ function handleMessage(sender_psid, received_message) {
 }
 
 function callSendAPI(sender_psid, response) {
-
-
 
     let request_body = {
         "recipient": {
