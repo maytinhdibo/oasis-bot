@@ -82,12 +82,13 @@ function handleMessage(sender_psid, received_message) {
         "quick_replies":[
             {
               "content_type":"text",
-              "title":"Search",
+              "title":"Gửi nội dung câu hỏi",
               "payload":"<POSTBACK_PAYLOAD>",
-              "image_url":"http://example.com/img/red.png"
             },
             {
-              "content_type":"location"
+                "content_type":"text",
+                "title":"Hủy",
+                "payload":"<POSTBACK_PAYLOAD>"
             }
           ]
       }
