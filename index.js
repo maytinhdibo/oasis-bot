@@ -6,7 +6,7 @@ const
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()); // creates express http server
 const request = require('request');
-var mapMess={"id":"text"}
+var mapMess = { "id": "text" }
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -73,13 +73,8 @@ app.get('/webhook', (req, res) => {
 
 function sendQuestion(sender_psid, received_message) {
     let response;
-    let last="";
-    let text="";
-    if(mapMess[sender_psid]){
-        last=mapMess[sender_psid];
-    }
     if (received_message.text) {
-        text=received_message.text;
+        text = received_message.text;
         response = {
             "text": `Để gửi câu hỏi lên group vui lòng xác nhận bằng nút bên dưới. ${last}`,
             "quick_replies": [
@@ -102,13 +97,49 @@ function sendQuestion(sender_psid, received_message) {
     callSendAPI(sender_psid, response, text);
 }
 
-function handleMessage(sender_psid, received_message) {
-    sendQuestion(sender_psid, received_message)
+function sendType(sender_psid, received_message) {
+    let response;
+    if (received_message.text) {
+        text = received_message.text;
+        response = {
+            "text": `Vui lòng nhập câu hỏi.`,
+        }
+
+    } else if (received_message.attachments) {
+        let attachment_url = received_message.attachments[0].payload.url;
+    }
+    callSendAPI(sender_psid, response);
 }
 
-function callSendAPI(sender_psid, response, text) {
+function handleMessage(sender_psid, received_message) {
 
-    mapMess[sender_psid]=text;
+    let text = "";
+    if (received_message.text) {
+        text = received_message.text;
+    }
+
+    sendQuestion(sender_psid, received_message);
+    if (mapMess[sender_psid]) {
+        switch (text) {
+            case "Đặt câu hỏi":
+                sendType(sender_psid, received_message);
+                break;
+
+            default:
+                break;
+        }
+    } else {
+        sendQuestion(sender_psid, received_message);
+    }
+    if (mapMess[sender_psid]) {
+        mapMess[sender_psid] = "";
+    }
+    mapMess[sender_psid] = text;
+}
+
+function callSendAPI(sender_psid, response) {
+
+
 
     let request_body = {
         "recipient": {
