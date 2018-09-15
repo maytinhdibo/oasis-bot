@@ -97,16 +97,16 @@ function sendQuestion(sender_psid, received_message) {
     } else if (received_message.attachments) {
         let attachment_url = received_message.attachments[0].payload.url;
     }
-    callSendAPI(sender_psid, response);
+    callSendAPI(sender_psid, response, text);
 }
 
 function handleMessage(sender_psid, received_message) {
     sendQuestion(sender_psid, received_message)
 }
 
-function callSendAPI(sender_psid, response) {
+function callSendAPI(sender_psid, response, text) {
 
-    mapMess[sender_psid]=response.text;
+    mapMess[sender_psid]=text;
 
     let request_body = {
         "recipient": {
