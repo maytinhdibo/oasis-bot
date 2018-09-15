@@ -134,19 +134,8 @@ function sendBook(sender_psid) {
                     "type":"web_url",
                     "url":"https://www.messenger.com",
                     "title":"Visit Messenger"
-                  },
-                  {
-                    "type":"web_url",
-                    "url":"https://www.messenger.com",
-                    "title":"Visit Messenger"
-                  },
-                  {
-                    "type":"web_url",
-                    "url":"https://www.messenger.com",
-                    "title":"Visit Messenger"
                   }
-                ],
-                
+                ]      
     }
     } 
 }
