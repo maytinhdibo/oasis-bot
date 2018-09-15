@@ -123,14 +123,30 @@ function sendBook(sender_psid) {
               "type":"template",
               "payload":{
                 "template_type":"button",
-                "text":"What do you want to do next?",
+                "text":"Bạn có thể tham khảo tài liệu về môn OOP dưới đây.",
                 "buttons":[
+                  {
+                    "type":"web_url",
+                    "url":"https://www.messenger.com",
+                    "title":"Ebook Intro Java"
+                  },
+                  {
+                    "type":"web_url",
+                    "url":"https://www.messenger.com",
+                    "title":"Visit Messenger"
+                  },
+                  {
+                    "type":"web_url",
+                    "url":"https://www.messenger.com",
+                    "title":"Visit Messenger"
+                  },
                   {
                     "type":"web_url",
                     "url":"https://www.messenger.com",
                     "title":"Visit Messenger"
                   }
-                ]
+                ],
+                
     }
     } 
 }
