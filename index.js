@@ -145,14 +145,8 @@ function sendBook(sender_psid) {
                     "url":"https://www.messenger.com",
                     "title":"Nội dung bài tập lớn"
                   }
-                ]   ,
-                "quick_replies": [
-                    {
-                        "content_type": "text",
-                        "title": "Quay lại",
-                        "payload": "<POSTBACK_PAYLOAD>",
-                    }
-                ]   
+                ]  
+                
     }
     } 
 }
