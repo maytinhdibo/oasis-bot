@@ -136,18 +136,11 @@ function sendBook(sender_psid) {
                     "title":"Bài tập thực hành"
                   },
                   {
-                    "type":"web_url",
+                    "type":"text",
                     "url":"https://google.com",
                     "title":"Nội dung bài tập lớn"
                   }
-                ]  ,
-                "quick_replies": [
-                    {
-                        "content_type": "text",
-                        "title": "Hủy",
-                        "payload": "<POSTBACK_PAYLOAD>",
-                    }
-                ]
+                ] 
                 
     }
     } 
