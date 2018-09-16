@@ -139,11 +139,6 @@ function sendBook(sender_psid) {
                     "type":"web_url",
                     "url":"https://www.messeng.com",
                     "title":"Bài tập thực hành"
-                  },
-                  {
-                    "type":"web_url",
-                    "url":"https://www.messe.com",
-                    "title":"Nội dung bài tập lớn"
                   }
                 ]  
                 
