@@ -132,20 +132,22 @@ function sendBook(sender_psid) {
                   },
                   {
                     "type":"web_url",
-                    "url":"https://www.messenger.com#",
-                    "title":"Hacker Rank"
-                  },
-                  {
-                    "type":"web_url",
                     "url":"https://www.messeng.com",
                     "title":"Bài tập thực hành"
                   },
                   {
                     "type":"web_url",
                     "url":"https://google.com",
-                    "title":"Google"
+                    "title":"Nội dung bài tập lớn"
                   }
-                ]  
+                ]  ,
+                "quick_replies": [
+                    {
+                        "content_type": "text",
+                        "title": "Hủy",
+                        "payload": "<POSTBACK_PAYLOAD>",
+                    }
+                ]
                 
     }
     } 
